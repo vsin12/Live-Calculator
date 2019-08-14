@@ -1,0 +1,39 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/calculator.css">
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="/javascript/calculator.js"></script>
+<title>
+Sezzle Developer Challenge
+</title>
+</head>
+<body>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Calculator</a>
+  </li>
+</ul>
+<form class="form-inline mainForm" action="">
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputExpression" class="sr-only">Password</label>
+    <input type="text" class="form-control" id="inputExpression" placeholder="Enter expression " name = "inputExpression">
+  </div>
+  <button type="submit" class="btn btn-success mb-2">Calculate</button>
+</form>
+<div class="alert alert-warning invalidExpression" role="alert">
+  Not a valid expression
+</div>
+<table id = "logsTable" class="table table-sm logsTable">
+  <caption>::Calculations from all users::</caption>
+  <thead>
+    <tr>
+      <th scope="col" class="columnHead" >Calculations Log (Live) </th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</body>
+</html>
