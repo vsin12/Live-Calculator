@@ -1,4 +1,5 @@
 var resultArray
+var userName
 
 if (localStorage.getItem('results')) {
   resultArray = JSON.parse(localStorage.getItem('results'))
@@ -7,12 +8,23 @@ if (localStorage.getItem('results')) {
 }
 
 $(function () {
+
+  if(localStorage.getItem('user')){
+    userName = localStorage.getItem('user')
+  }
+  else
+  {
+    userName = prompt("Enter pseduo-name to begin")
+    localStorage.setItem('user',userName)
+  }
+
 	if(resultArray.length>0){
     count = 0;
   	for (i=resultArray.length-1;i>=0;i--){
       count = count + 1
       if (count > 10) break;
-  		$('#logsTable tbody').append('<tr><td>'+resultArray[i]+'</td></tr>')
+  		$('#logsTable tbody').append('<tr><td class="resultColumn">'+resultArray[i].split(":")[0]+'</td><td class="userColumn">'+
+        resultArray[i].split(":")[1].split("::")[0]+'</td><td class="timeColumn">'+resultArray[i].split("::")[1]+'</td></tr>')
   	}
 	}	
 
@@ -23,6 +35,7 @@ $(function () {
     result = parseExpression($('#inputExpression').val())
     if(result != -1){
       $('.invalidExpression').hide()
+      result = formatResultForOutput(result)
       socket.emit('calculate',result);
       $('#inputExpression').val('');
       return false;
@@ -34,8 +47,12 @@ $(function () {
 
   socket.on('calculate',function(caclulationResult){    	
   	resultArray.push(caclulationResult)
+    localStorage.setItem('user',userName)
   	localStorage.setItem('results',JSON.stringify(resultArray))
-    $('#logsTable tbody').prepend('<tr />').children('tr:first').append('<td>'+caclulationResult+'</td>')
+    $('#logsTable tbody').prepend('<tr />').children('tr:first').append('<td class="resultColumn">'+caclulationResult.split(":")[0]+
+      '</td><td class="userColumn">'+caclulationResult.split(":")[1].split("::")[0]+
+      '</td><td class="timeColumn">'+caclulationResult.split("::")[1]+'</td>')
+
     $('tbody tr').each(function(){
       if($("tr").index(this)>10){
         $(this).remove()
@@ -99,4 +116,9 @@ function findIndexOfTheOperator(evaluationExpression)
       return i
     }
   }
+}
+
+function formatResultForOutput(result){
+    var currentDatetime = new Date($.now())
+  return result.concat(":",userName,"::",currentDatetime.toLocaleString())
 }

@@ -4,13 +4,24 @@
 }
 
 .logsTable{
-	width: 20%!important;
+	width: 50%!important;
 	text-align: center;
-	margin-left: 460px;
+	margin-left: 300px;
 }
 
 .columnHead{
 	color: blue;
+}
+
+.resultColumn{
+	color:green;
+}
+
+.userColumn{
+	color:blue;
+}
+.timeColumn{
+	color:red;
 }
 
 .invalidExpression{
