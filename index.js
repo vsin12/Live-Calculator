@@ -5,7 +5,9 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 app.use(express.static(__dirname + '/public'));
 
-http.listen(3300)
+const port = process.env.PORT || 3300
+
+http.listen(port)
 
 io.on('connection',function(socket){
 	socket.on('calculate', function(result){
