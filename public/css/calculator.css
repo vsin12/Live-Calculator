@@ -1,0 +1,22 @@
+.mainForm{
+	margin-top:60px;
+	margin-left: 400px
+}
+
+.logsTable{
+	width: 20%!important;
+	text-align: center;
+	margin-left: 460px;
+}
+
+.columnHead{
+	color: blue;
+}
+
+.invalidExpression{
+	width: 25%!important;
+	margin-left:440px;
+	height: 40px;
+	text-align:center;
+	display: none;
+}
