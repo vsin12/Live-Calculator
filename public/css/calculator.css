@@ -1,12 +1,24 @@
 .mainForm{
-	margin-top:60px;
-	margin-left: 400px
+	margin-top:40px;
+	margin-left: 300px;
 }
 
+.textArea{
+	float: left;
+	text-align: center;
+	width: 35%;
+}
+
+.calculateButton{
+	float: left;
+	margin-top: -8px;
+	margin-left: 15px;
+}
 .logsTable{
+	margin-top:70px!important;
 	width: 50%!important;
 	text-align: center;
-	margin-left: 300px;
+	margin-left: 310px;
 }
 
 .columnHead{
@@ -21,13 +33,20 @@
 	color:blue;
 }
 .timeColumn{
-	color:red;
+	color:black;
 }
 
 .invalidExpression{
-	width: 25%!important;
-	margin-left:440px;
-	height: 40px;
-	text-align:center;
-	display: none;
+	display: inline-block;
+    width: 20%;
+    float: left;
+    margin-top: -10px;
+    color: red;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.noteElement{
+	color: gray!important;
+	
 }

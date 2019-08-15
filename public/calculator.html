@@ -15,15 +15,15 @@ Sezzle Developer Challenge
     <a class="nav-link active" href="#">Calculator</a>
   </li>
 </ul>
-<form class="form-inline mainForm" action="">
+<form class="form-group mainForm" action="">
   <div class="form-group mx-sm-3 mb-2">
-    <input type="text" class="form-control" id="inputExpression" placeholder="Enter expression " name = "inputExpression">
+    <small id="expressionHelp" class="form-text text-muted noteElement">Supported operators : *, x, X, -, %, /, + <b>Ex : 2+3, 2x3</b></small>
+    <input type="text" class="form-control textArea" id="inputExpression" placeholder="maximum of 2 operands " name = "inputExpression">
+    
   </div>
-  <button type="submit" class="btn btn-success mb-2">Calculate</button>
+  <button type="submit" class="btn btn-success mb-2 calculateButton">Calculate</button>
 </form>
-<div class="alert alert-warning invalidExpression" role="alert">
-  Not a valid expression
-</div>
+<p class="invalidExpression" role="alert">Invalid expression !!</p>
 <table id = "logsTable" class="table table-sm logsTable">
   <caption>::Calculations from all users::</caption>
   <thead>
