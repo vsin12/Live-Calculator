@@ -12,11 +12,13 @@ $(function () {
 
   if(localStorage.getItem('user')){
     userName = localStorage.getItem('user')
+    $('.nameHolder').text("Welcome "+userName)
   }
   else
   {
     userName = prompt("Enter pseduo-name to begin")
     localStorage.setItem('user',userName)
+    $('.nameHolder').text("Welcome "+userName)
   }
 
 	if(resultArray.length>0){
@@ -63,10 +65,14 @@ $(function () {
 }); 
 
 function parseExpression(expression){
+
     inputExpression = expression
     evaluationExpression = inputExpression.replace(/ /g,'')
-    evaluationExpression = evaluationExpression.replace('_','')
+    evaluationExpression = evaluationExpression.replace(/[_(){}]/g,'')
     indexOfOperator = findIndexOfTheOperator(evaluationExpression)
+    if (indexOfOperator == -1)
+      return -1
+
     if(indexOfOperator.toString().includes("^") == false){
       firstOperand = evaluationExpression.slice(0,indexOfOperator)
       secondOperand = evaluationExpression.slice(indexOfOperator + 1,evaluationExpression.length + 1)
@@ -126,6 +132,7 @@ function findIndexOfTheOperator(evaluationExpression)
       return i
     }
   }
+  return -1
 }
 
 function formatResultForOutput(result){

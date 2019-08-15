@@ -5,6 +5,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="/javascript/calculator.js"></script>
+
 <title>
 Sezzle Developer Challenge
 </title>
@@ -14,10 +15,16 @@ Sezzle Developer Challenge
   <li class="nav-item">
     <a class="nav-link active" href="#">Calculator</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/readme.html">Read me (details)</a>
+  </li>
+  <li class="nav-item">
+    <p class="nav-link disabled nameHolder"></a>
+  </li>
 </ul>
 <form class="form-group mainForm" action="">
   <div class="form-group mx-sm-3 mb-2">
-    <small id="expressionHelp" class="form-text text-muted noteElement">Supported operators : *, x, X, -, %, /, + <b>Ex : 2+3, 2x3</b></small>
+    <small id="expressionHelp" class="form-text text-muted noteElement">Supported operations : ^, *, -, %, /, + <b>Ex : 2+3, 2x3</b></small>
     <input type="text" class="form-control textArea" id="inputExpression" placeholder="maximum of 2 operands " name = "inputExpression">
     
   </div>
@@ -25,10 +32,10 @@ Sezzle Developer Challenge
 </form>
 <p class="invalidExpression" role="alert">Invalid expression !!</p>
 <table id = "logsTable" class="table table-sm logsTable">
-  <caption>::Calculations from all users::</caption>
+  <caption>(Live) calculations from all users</caption>
   <thead>
     <tr>
-      <th scope="col" class="resultColumn" >Calculations Log (Live) </th>
+      <th scope="col" class="resultColumn" >Recent calculations </th>
       <th scope="col" class="userColumn" >User </th>
       <th scope="col" class="timeColumn" >Log Date </th>
     </tr>
