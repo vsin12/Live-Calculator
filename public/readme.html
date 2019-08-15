@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/calculator.css">
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="/javascript/calculator.js"></script>
+	<title>Read me</title>
+</head>
+<body>
+	<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="/calculator.html">Calculator</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Read me</a>
+  </li>
+  <li class="nav-item">
+    <p class="nav-link disabled nameHolder"></a>
+  </li>
+</ul>
+
+<p class="readmeText">Task details :</p>
+<ol type="1">
+  <li >Developed this app using Node.js, socket.io, JQuery, HTML5, CSS (Bootstrap) </li>
+  <li >Did not use any database, instead I am storing everything in localstorage (to maintain data in-between sessions)</li>
+  <li >Operators available : 
+  <ol type="i">
+  	<li>For addition : + </li>
+  	<li>For substraction : -</li>
+  	<li>For multiplication : *, x, X</li>
+  	<li>For division : /</li>
+  	<li>For Modulo : %</li>
+  	<li>For Power : ^,**</li>
+  </ol>
+  </li>
+  <li>Check for invalid expressions (multiple operators, NaN values, misplaced operators) is being done</li>
+  <li>These operators will be replaced with whitespace for evaluation : {, }, (, ), _</li>
+  <li>Note : a++b works as a + (+b)</li>
+</ol>
+
+<p class="readmeText">Scope :</p>
+<ol>
+	<li>Better solution can be done for localstorage (because end-user can just go to developer tools and clear it )</li>
+	<li>BODMAS can be implemented with some more time</li>
+</ol>
+</body>
+</html>
