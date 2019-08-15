@@ -12,14 +12,17 @@
     <a class="nav-link" href="/calculator.html">Calculator</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="#">Read me</a>
+    <a class="nav-link active" href="#">Details</a>
   </li>
   <li class="nav-item">
-    <p class="nav-link disabled nameHolder"></a>
+    <a class="nav-link logout" href="/calculator.html">Log Out</a>
+  </li>
+  <li class="nav-item">
+    <p class="nav-link disabled nameHolder"></p>
   </li>
 </ul>
 
-<p class="readmeText">Task details :</p>
+<p class="readmeText"><i>Task details :</i></p>
 <ol type="1">
   <li >Developed this app using Node.js, socket.io, JQuery, HTML5, CSS (Bootstrap) </li>
   <li >Did not use any database, instead I am storing everything in localstorage (to maintain data in-between sessions)</li>
@@ -38,10 +41,11 @@
   <li>Note : a++b works as a + (+b)</li>
 </ol>
 
-<p class="readmeText">Scope :</p>
+<p class="readmeText"><i>Future scope :</i></p>
 <ol>
 	<li>Better solution can be done for localstorage (because end-user can just go to developer tools and clear it )</li>
 	<li>BODMAS can be implemented with some more time</li>
+	<li><b>Note : I tried implementing global user count but there seems to be some issue with socket.io's 'connect' - it treats every refresh command as a new connection</b></li>
 </ol>
 </body>
 </html>

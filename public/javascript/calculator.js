@@ -10,13 +10,19 @@ if (localStorage.getItem('results')) {
 
 $(function () {
 
+  $('.logout').click(function() {
+    localStorage.clear()
+  })
+
   if(localStorage.getItem('user')){
     userName = localStorage.getItem('user')
     $('.nameHolder').text("Welcome "+userName)
   }
   else
   {
-    userName = prompt("Enter pseduo-name to begin")
+    userName = prompt("Enter name (pseudo) to begin ( if name not provided then you are *newUser* )","newUser")
+    if(userName == "") 
+      userName = "newUser"
     localStorage.setItem('user',userName)
     $('.nameHolder').text("Welcome "+userName)
   }
