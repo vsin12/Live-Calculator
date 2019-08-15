@@ -37,7 +37,7 @@
 }
 
 .invalidExpression{
-	display: inline-block;
+	display: none;
     width: 20%;
     float: left;
     margin-top: -10px;

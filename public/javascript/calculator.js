@@ -71,7 +71,7 @@ function parseExpression(expression){
     operator = evaluationExpression[indexOfOperator]
     if(isNaN(firstOperand) || isNaN(secondOperand))
       return -1
-    result = identifyOperatorAndCalculateResult(parseInt(firstOperand),parseInt(secondOperand),operator)
+    result = identifyOperatorAndCalculateResult(firstOperand,secondOperand,operator)
     if(result == undefined || result == null || isNaN(result)){
       return -1  
     }
@@ -82,7 +82,9 @@ function parseExpression(expression){
 }
 
 function identifyOperatorAndCalculateResult(firstOperand, secondOperand, operator){
-  console.log(operator)
+  firstOperand = checkandSetOperandType(firstOperand)
+  secondOperand = checkandSetOperandType(secondOperand)
+
   switch(operator){
     case "*":
     case "x": 
@@ -121,4 +123,12 @@ function findIndexOfTheOperator(evaluationExpression)
 function formatResultForOutput(result){
     var currentDatetime = new Date($.now())
   return result.concat(":",userName,"::",currentDatetime.toLocaleString())
+}
+
+function checkandSetOperandType(operand){
+  tempOperand = parseFloat(operand) % 1
+  if(tempOperand == 0)
+    return parseInt(operand)
+  else
+    return parseFloat(operand)
 }
