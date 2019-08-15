@@ -1,5 +1,6 @@
 var resultArray
 var userName
+var userCount
 
 if (localStorage.getItem('results')) {
   resultArray = JSON.parse(localStorage.getItem('results'))
@@ -45,8 +46,8 @@ $(function () {
     }
   });
 
-  socket.on('calculate',function(caclulationResult){    	
-  	resultArray.push(caclulationResult)
+  socket.on('calculate',function(caclulationResult){
+    resultArray.push(caclulationResult)
     localStorage.setItem('user',userName)
   	localStorage.setItem('results',JSON.stringify(resultArray))
     $('#logsTable tbody').prepend('<tr />').children('tr:first').append('<td class="resultColumn">'+caclulationResult.split(":")[0]+
@@ -66,18 +67,18 @@ function parseExpression(expression){
     evaluationExpression = inputExpression.replace(/ /g,'')
     evaluationExpression = evaluationExpression.replace('_','')
     indexOfOperator = findIndexOfTheOperator(evaluationExpression)
-    firstOperand = evaluationExpression.slice(0,indexOfOperator)
-    secondOperand = evaluationExpression.slice(indexOfOperator + 1,evaluationExpression.length + 1)
-    operator = evaluationExpression[indexOfOperator]
-    if(isNaN(firstOperand) || isNaN(secondOperand))
-      return -1
-    result = identifyOperatorAndCalculateResult(firstOperand,secondOperand,operator)
-    if(result == undefined || result == null || isNaN(result)){
-      return -1  
+    if(indexOfOperator.toString().includes("^") == false){
+      firstOperand = evaluationExpression.slice(0,indexOfOperator)
+      secondOperand = evaluationExpression.slice(indexOfOperator + 1,evaluationExpression.length + 1)
+      operator = evaluationExpression[indexOfOperator]
+      return checkOperandsAndGetResult(firstOperand,secondOperand,operator)
+
     }
     else{
-      result = firstOperand.concat(" ",operator," ",secondOperand," = ",result)  
-      return result
+      indexOfOperator = indexOfOperator.split("^")[0]
+      firstOperand = evaluationExpression.slice(0,indexOfOperator)
+      secondOperand = evaluationExpression.slice(parseInt(indexOfOperator) + 2,evaluationExpression.length + 1)
+      return checkOperandsAndGetResult(firstOperand,secondOperand,"**")
     }
 }
 
@@ -86,23 +87,27 @@ function identifyOperatorAndCalculateResult(firstOperand, secondOperand, operato
   secondOperand = checkandSetOperandType(secondOperand)
 
   switch(operator){
+    case "^":
+    case "**":
+              return firstOperand ** secondOperand
+              break
     case "*":
     case "x": 
     case "X":
-          return firstOperand * secondOperand
-          break
+              return firstOperand * secondOperand
+              break
     case "%":
-          return firstOperand % secondOperand
-          break
+              return firstOperand % secondOperand
+              break
     case "/":
-          return firstOperand / secondOperand
-          break
+              return firstOperand / secondOperand
+              break
     case "+":
-          return firstOperand + secondOperand
-          break
+              return firstOperand + secondOperand
+              break
     case "-":
-          return firstOperand - secondOperand
-          break
+              return firstOperand - secondOperand
+              break
   }
 
 }
@@ -111,9 +116,12 @@ function findIndexOfTheOperator(evaluationExpression)
 {
   for (i = 1; i<evaluationExpression.length; i++)
   {
+    if(evaluationExpression[i] == "*" && evaluationExpression[i+1] == "*")
+      return i+"^"
+
     if(evaluationExpression[i] == '*' || evaluationExpression[i].toLowerCase() == 'x' ||
       evaluationExpression[i] == '+' || evaluationExpression[i] == '/'
-      || evaluationExpression[i] == '%' || evaluationExpression[i] == '-')
+      || evaluationExpression[i] == '%' || evaluationExpression[i] == '-' || evaluationExpression[i] == '^')
     {
       return i
     }
@@ -131,4 +139,20 @@ function checkandSetOperandType(operand){
     return parseInt(operand)
   else
     return parseFloat(operand)
+}
+
+function checkOperandsAndGetResult(firstOperand,secondOperand,operator)
+{
+  if(isNaN(firstOperand) || isNaN(secondOperand))
+    return -1
+  
+  result = identifyOperatorAndCalculateResult(firstOperand,secondOperand,operator)
+  
+  if(result == undefined || result == null || isNaN(result)){
+        return -1  
+  }
+  else{
+        result = firstOperand.concat(" ",operator," ",secondOperand," = ",result)  
+        return result
+  }
 }
