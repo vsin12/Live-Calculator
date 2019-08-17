@@ -6,7 +6,7 @@
 .textArea{
 	float: left;
 	text-align: center;
-	width: 35%;
+	width: 35%!important;
 }
 
 .calculateButton{
