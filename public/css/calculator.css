@@ -50,7 +50,6 @@
 	color: gray!important;
 	
 }
-
 .nameHolder{
 	color: #077F6F;
 	margin-left: 550px;
@@ -61,6 +60,18 @@
 	text-decoration: underline;
 }
 
+@media only screen and (max-width: 500px) {
+.nameHolder{
+	color: #077F6F;
+	margin-left: 450px;
+	font-style: oblique;
+	font-family: cursive;
+	font-weight: bold;
+	font-size: 18px;
+	text-decoration: underline;
+}
+
+}
 .readmeText{
 	font-family: bold;
 	margin-left:20px;
